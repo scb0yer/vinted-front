@@ -1,17 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap");
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  line-height: 16px;
+}
+.font-xl {
+  font-size: 22px;
+  font-weight: 600;
+}
+.font-m {
+  font-size: 16px;
+  line-height: 18px;
+  color: #848484;
+}
 h2 {
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
   padding-top: 20px;
   padding-bottom: 10px;
 }
-
+a {
+  color: rgb(90, 90, 90);
+  text-decoration: none;
+}
 header {
   display: flex;
   padding: 20px 10% 20px 10%;
-  gap: 10px;
+  gap: 20px;
+  flex-wrap: nowrap;
 }
-header > .col1 > img {
+
+header .col3 {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+header button {
+  border: 1px solid #1ab1ba;
+  border-radius: 5px;
+  background-color: white;
+  width: 115px;
+  height: 30px;
+  margin: 5px;
+  color: #1ab1ba;
+}
+#search {
+  width: 600px;
+  height: 40px;
+  background-color: #ebedee;
+  border-radius: 5px;
+  border: none;
+}
+.button1 {
+  border: none;
+  background-color: #1ab1ba;
+  color: white;
   width: 150px;
+}
+header > .col1 img {
+  width: 150px;
+}
+
+section {
+  background-color: #ebedee;
 }
 .avatar {
   width: 30px;
@@ -34,6 +86,12 @@ header > .col1 > img {
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.offer {
+  margin-top: 5px;
+  margin-bottom: 15px;
 }
 .offerPage {
   display: flex;
@@ -43,6 +101,7 @@ header > .col1 > img {
   gap: 20px;
 }
 .offerPage > div:first-child {
+  margin-top: 30px;
   width: 400px;
 }
 .offerPage > div:first-child > img {
@@ -50,14 +109,38 @@ header > .col1 > img {
   object-fit: contain;
 }
 .offerPage > div:last-child {
-  flex: 2;
+  margin-top: 30px;
+  background-color: white;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.offerPage div {
+  padding-top: 2px;
+}
+
+.offerPage button {
+  background-color: #1ab1ba;
+  width: 100%;
+  height: 35px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 20px;
 }
 .subDetails {
   display: flex;
+  color: #848484;
+}
+.subDetails > div:last-child {
+  font-weight: 600;
 }
 .subDetails > div {
   flex: 1;
 }
 .details {
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid #ebedee;
+  padding-bottom: 50px;
 }

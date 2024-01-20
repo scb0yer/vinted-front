@@ -9,7 +9,7 @@ export default function HomePage(props) {
       <div className="container">
         {props.data.map((offer, index) => {
           return (
-            <Link to={`/offer/${offer._id}`} key={index}>
+            <Link className="offer" to={`/offer/${offer._id}`} key={index}>
               <div>
                 {offer.owner.account.avatar && (
                   <img
