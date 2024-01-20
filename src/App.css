@@ -1,3 +1,10 @@
+h2 {
+  font-size: 20px;
+  font-weight: 500;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
 header {
   display: flex;
   padding: 20px 10% 20px 10%;
@@ -5,4 +12,52 @@ header {
 }
 header > .col1 > img {
   width: 150px;
+}
+.avatar {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+.photo {
+  width: 240px;
+  height: 350px;
+  object-fit: cover;
+}
+.banner {
+  height: 580px;
+  width: 100%;
+  object-fit: cover;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+.offerPage {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10%;
+  margin-right: 10%;
+  gap: 20px;
+}
+.offerPage > div:first-child {
+  width: 400px;
+}
+.offerPage > div:first-child > img {
+  width: 400px;
+  object-fit: contain;
+}
+.offerPage > div:last-child {
+  flex: 2;
+}
+.subDetails {
+  display: flex;
+}
+.subDetails > div {
+  flex: 1;
+}
+.details {
+  border-bottom: 1px solid grey;
 }

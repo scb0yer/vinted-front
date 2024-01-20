@@ -4,6 +4,7 @@ import axios from "axios";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
+import OfferPage from "./pages/OfferPage";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -30,6 +31,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage data={data.offers} />} />
+        <Route path="/offer/:id" element={<OfferPage data={data.offers} />} />
       </Routes>
     </Router>
   );

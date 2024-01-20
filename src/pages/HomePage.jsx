@@ -1,23 +1,51 @@
 import { Link } from "react-router-dom";
+import Image from "../assets/vignette-focus.jpg";
 
 export default function HomePage(props) {
-  console.log("essai", props.data);
   return (
     <div>
-      <h1> HomePage component</h1>
+      <img className="banner" src={Image} alt="photo" />
       <br />
-      {props.data.map((offer, index) => {
-        return (
-          <div key={index}>
-            <div>
-              {offer}
-              {/* <img src={offer.owner.account.avatar.secure_url} alt="avatar" /> */}
-            </div>
-            <div></div>
-            <div></div>
-          </div>
-        );
-      })}
+      <div className="container">
+        {props.data.map((offer, index) => {
+          return (
+            <Link to={`/offer/${offer._id}`} key={index}>
+              <div>
+                {offer.owner.account.avatar && (
+                  <img
+                    className="avatar"
+                    src={offer.owner.account.avatar.secure_url}
+                    alt="avatar"
+                  />
+                )}{" "}
+                {offer.owner.account.username}
+              </div>
+              <div>
+                <img
+                  className="photo"
+                  src={offer.product_pictures[0].secure_url}
+                  alt="photo"
+                />
+              </div>
+              <div>{offer.product_price} €</div>
+              <div>
+                {offer.product_details.map((detail, index) => {
+                  return (
+                    <div key={index}>{detail.TAILLE && detail.TAILLE}</div>
+                  );
+                })}
+              </div>
+              <div>
+                {offer.product_details.map((detail, index) => {
+                  return (
+                    <div key={index}>{detail.MARQUE && detail.MARQUE}</div>
+                  );
+                })}
+              </div>
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 }
