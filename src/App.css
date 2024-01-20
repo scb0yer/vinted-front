@@ -1,0 +1,8 @@
+header {
+  display: flex;
+  padding: 20px 10% 20px 10%;
+  gap: 10px;
+}
+header > .col1 > img {
+  width: 150px;
+}
