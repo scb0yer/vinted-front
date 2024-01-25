@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
-const SignUp = ({ setVisible }) => {
+const SignUp = ({ setVisible, setLoginVisible }) => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,12 +27,14 @@ const SignUp = ({ setVisible }) => {
       const response = await axios.post(
         "https://site--vinted--dzk9mdcz57cb.code.run/user/signup",
         {
-          name: name,
+          username: name,
           email: email,
           password: password,
           newsletter: newsletter,
         }
       );
+      alert("Votre compte a bien été créé.");
+      setVisible(false);
     } catch (error) {
       console.log(error.message);
     }
@@ -105,16 +108,16 @@ const SignUp = ({ setVisible }) => {
             postData(name, email, password, newsletter);
           }}
         >
-          Submit
+          S'inscrire
         </button>
-        <Link
-          to="./Login.jsx"
+        <a
           onClick={() => {
             setVisible(false);
+            setLoginVisible(true);
           }}
         >
           Tu as déjà un compte ? Connecte-toi !
-        </Link>
+        </a>
       </form>
     </div>
   );

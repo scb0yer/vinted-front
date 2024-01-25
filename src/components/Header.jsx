@@ -4,6 +4,11 @@ import Vinted_Logo from "../assets/Vinted_Logo.png";
 const Header = (props) => {
   return (
     <header>
+      {props.loginVisible
+        ? document.body.classList.add("scroll-lock")
+        : props.signUpVisible
+        ? document.body.classList.add("scroll-lock")
+        : document.body.classList.remove("scroll-lock")}
       <div className="col1">
         <Link to={`/`}>
           <img src={Vinted_Logo} alt="Logo" />
@@ -27,13 +32,18 @@ const Header = (props) => {
         <div>
           <button
             onClick={() => {
-              props.setVisible(true);
-              console.log("clicked");
+              props.setSignUpVisible(true);
             }}
           >
             S'inscrire
           </button>
-          <button>Se connecter</button>
+          <button
+            onClick={() => {
+              props.setLoginVisible(true);
+            }}
+          >
+            Se connecter
+          </button>
         </div>
         <div>
           <button className="button1">Vends tes articles</button>

@@ -179,3 +179,7 @@ input {
   position: absolute;
   right: 20px;
 }
+
+.scroll-lock {
+  overflow: hidden;
+}

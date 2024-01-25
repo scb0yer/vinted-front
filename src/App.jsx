@@ -6,11 +6,13 @@ import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import OfferPage from "./pages/OfferPage";
 import SignUp from "./components/SignUp";
+import Login from "./components/Login";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
-  const [visible, setVisible] = useState(false);
+  const [signUpVisible, setSignUpVisible] = useState(false);
+  const [loginVisible, setLoginVisible] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,17 +29,27 @@ function App() {
     };
     fetchData();
   }, []);
-  console.log(visible);
   return isLoading ? (
     <span>En cours de chargement...</span>
   ) : (
     <Router>
-      <Header setVisible={setVisible} />
-      <Routes style={{ overflow: visible ? "hidden" : "scroll" }}>
+      <Header
+        setSignUpVisible={setSignUpVisible}
+        setLoginVisible={setLoginVisible}
+        loginVisible={loginVisible}
+        signUpVisible={signUpVisible}
+      />
+      <Routes>
         <Route path="/" element={<HomePage data={data.offers} />} />
         <Route path="/offer/:id" element={<OfferPage data={data.offers} />} />
       </Routes>
-      {visible && <SignUp setVisible={setVisible} />};
+      {signUpVisible && (
+        <SignUp
+          setVisible={setSignUpVisible}
+          setLoginVisible={setLoginVisible}
+        />
+      )}
+      ;{loginVisible && <Login setVisible={setLoginVisible} />};
     </Router>
   );
 }
