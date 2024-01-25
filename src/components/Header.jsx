@@ -25,7 +25,14 @@ const Header = (props) => {
       </div>
       <div className="col3">
         <div>
-          <button>S'inscrire</button>
+          <button
+            onClick={() => {
+              props.setVisible(true);
+              console.log("clicked");
+            }}
+          >
+            S'inscrire
+          </button>
           <button>Se connecter</button>
         </div>
         <div>

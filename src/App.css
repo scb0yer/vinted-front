@@ -144,3 +144,38 @@ section {
   border-bottom: 1px solid #ebedee;
   padding-bottom: 50px;
 }
+.App {
+  position: relative;
+}
+.modal-root {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.modal {
+  background-color: white;
+  width: 500px;
+  height: 100vh;
+  border-radius: 10px;
+  border: solid 1px #848484;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 30px;
+  position: relative;
+}
+input {
+  border: none;
+  border-bottom: solid 1px #848484;
+}
+.close {
+  width: 25px;
+  position: absolute;
+  right: 20px;
+}
