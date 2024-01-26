@@ -22,7 +22,8 @@ const Login = ({ setVisible }) => {
         }
       );
       setVisible(false);
-      console.log();
+      const token = response.data.token;
+      Cookies.set("token", token, { expires: 0.5 });
     } catch (error) {
       console.log(error.message);
     }
