@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 import { useState } from "react";
 import axios from "axios";
 
-const Login = ({ setVisible }) => {
+const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const onChange = (event, target) => {
@@ -14,16 +14,17 @@ const Login = ({ setVisible }) => {
   };
   const postData = async (email, password) => {
     try {
-      const response = await axios.post(
+      const { data } = await axios.post(
         "https://site--vinted--dzk9mdcz57cb.code.run/user/login",
         {
           email: email,
           password: password,
         }
       );
-      setVisible(false);
-      const token = response.data.token;
-      Cookies.set("token", token, { expires: 0.5 });
+      props.setVisible(false);
+      const token = data.token;
+      Cookies.set("token", token, { expires: 0.5 }, { secure: true });
+      props.setToken(token);
     } catch (error) {
       console.log(error.message);
     }
@@ -32,7 +33,7 @@ const Login = ({ setVisible }) => {
     <div
       className="modal-root"
       onClick={() => {
-        setVisible(false);
+        props.setVisible(false);
       }}
     >
       <form

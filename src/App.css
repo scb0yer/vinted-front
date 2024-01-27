@@ -29,8 +29,18 @@ header {
   gap: 20px;
   flex-wrap: nowrap;
 }
-
+header .col1 {
+  flex: 1;
+}
+header .col2 {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
 header .col3 {
+  flex: 1;
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
@@ -46,7 +56,7 @@ header button {
   color: #1ab1ba;
 }
 #search {
-  width: 600px;
+  width: 100%;
   height: 40px;
   background-color: #ebedee;
   border-radius: 5px;

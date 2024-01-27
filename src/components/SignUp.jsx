@@ -16,15 +16,13 @@ const SignUp = ({ setVisible, setLoginVisible }) => {
     } else if (target === "password") {
       setPassword(event.target.value);
     } else if (target === "newsletter") {
-      if (newsletterCheckbox) {
-        setNewsletter(true);
-      }
+      setNewsletter(!newsletter);
     }
   };
 
   const postData = async (name, email, password, newsletter) => {
     try {
-      const response = await axios.post(
+      const { data } = await axios.post(
         "https://site--vinted--dzk9mdcz57cb.code.run/user/signup",
         {
           username: name,
@@ -34,6 +32,7 @@ const SignUp = ({ setVisible, setLoginVisible }) => {
         }
       );
       alert("Votre compte a bien été créé.");
+      console.log(data);
       setVisible(false);
     } catch (error) {
       console.log(error.message);
@@ -91,6 +90,7 @@ const SignUp = ({ setVisible, setLoginVisible }) => {
             type="checkbox"
             id="newsletterCheckbox"
             name="newsletter"
+            checked={newsletter}
             onChange={(event) => {
               onChange(event, "newsletter");
             }}
