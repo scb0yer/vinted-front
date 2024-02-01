@@ -29,13 +29,14 @@ export default function Publish(props) {
     } else if (target === "color") {
       setColor(event.target.value);
     } else if (target === "pictures") {
-      setPictures(event.target.files);
-      console.log("img>", pictures);
-      for (const key in pictures) {
-        if (Object.hasOwnProperty.call(pictures, key)) {
-          formData.append("picturesToUpload", pictures[key]);
-        }
-      }
+      const newPictures = [...pictures];
+      newPictures.push(event.target.files[0]);
+      setPictures(newPictures);
+      // for (const key in pictures) {
+      //   if (Object.hasOwnProperty.call(pictures, key)) {
+      //     formData.append("picturesToUpload", pictures[key]);
+      //   }
+      // }
     }
   };
   const postData = async (
