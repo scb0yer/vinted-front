@@ -51,7 +51,9 @@ export default function Publish(props) {
     pictures
   ) => {
     const formData = new FormData();
-    formData.append("picturesToUpload", pictures);
+    for (let i = 0; i < pictures.length; i++) {
+      formData.append("picturesToUpload", pictures[i]);
+    }
     formData.append("title", title);
     formData.append("description", description);
     formData.append("price", price);
