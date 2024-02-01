@@ -30,7 +30,9 @@ export default function Publish(props) {
       setColor(event.target.value);
     } else if (target === "pictures") {
       const newPictures = [...pictures];
-      newPictures.push(event.target.files[0]);
+      for (let i = 0; i < event.target.files.length; i++) {
+        newPictures.push(event.target.files[i]);
+      }
       setPictures(newPictures);
       // for (const key in pictures) {
       //   if (Object.hasOwnProperty.call(pictures, key)) {
@@ -64,7 +66,7 @@ export default function Publish(props) {
     formData.append("color", color);
     try {
       const { data } = await axios.post(
-        "https://site--vinted--dzk9mdcz57cb.code.run/offer/publish",
+        "http://localhost:3000/offer/publish",
         formData,
         {
           headers: {
@@ -87,6 +89,7 @@ export default function Publish(props) {
           <button>
             <input
               type="file"
+              multiple
               onChange={(event) => {
                 onChange(event, "pictures");
               }}
