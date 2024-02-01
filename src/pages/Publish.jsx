@@ -10,7 +10,7 @@ export default function Publish(props) {
   const [brand, setBrand] = useState("");
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
-  const [pictures, setPictures] = useState({});
+  const [pictures, setPictures] = useState([]);
   const onChange = (event, target) => {
     if (target === "title") {
       setTitle(event.target.value);
