@@ -10,7 +10,7 @@ export default function Publish(props) {
   const [brand, setBrand] = useState("");
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
-  const [picture, setPicture] = useState({});
+  const [pictures, setPictures] = useState({});
   const onChange = (event, target) => {
     if (target === "title") {
       setTitle(event.target.value);
@@ -28,8 +28,14 @@ export default function Publish(props) {
       setSize(event.target.value);
     } else if (target === "color") {
       setColor(event.target.value);
-    } else if (target === "picture") {
-      setPicture(event.target.files[0]);
+    } else if (target === "pictures") {
+      setPictures(event.target.files);
+      console.log("img>", pictures);
+      for (const key in pictures) {
+        if (Object.hasOwnProperty.call(pictures, key)) {
+          formData.append("picturesToUpload", pictures[key]);
+        }
+      }
     }
   };
   const postData = async (
@@ -41,20 +47,18 @@ export default function Publish(props) {
     brand,
     size,
     color,
-    picture
+    pictures
   ) => {
     const formData = new FormData();
-    formData.append("picturesToUpload", picture);
-    formData.append("product_name", title);
-    formData.append("product_description", description);
-    formData.append("product_price", price);
-    formData.append("product_details", [
-      ("état", condition),
-      ("emplacement", city),
-      ("marque", brand),
-      ("taille", size),
-      ("couleur", color),
-    ]);
+    formData.append("picturesToUpload", pictures);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("price", price);
+    formData.append("condition", condition);
+    formData.append("city", city);
+    formData.append("brand", brand);
+    formData.append("size", size);
+    formData.append("color", color);
     try {
       const { data } = await axios.post(
         "https://site--vinted--dzk9mdcz57cb.code.run/offer/publish",
@@ -81,7 +85,7 @@ export default function Publish(props) {
             <input
               type="file"
               onChange={(event) => {
-                onChange(event, "name");
+                onChange(event, "pictures");
               }}
             />
           </button>
@@ -203,7 +207,7 @@ export default function Publish(props) {
               brand,
               size,
               color,
-              picture
+              pictures
             );
           }}
         >
