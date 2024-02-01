@@ -1,3 +1,5 @@
+/* ---------------- FONT & SUBTITLES ----------------*/
+
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap");
 body {
   font-family: "Open Sans", sans-serif;
@@ -23,6 +25,9 @@ a {
   color: rgb(90, 90, 90);
   text-decoration: none;
 }
+
+/* ---------------- HEADER ----------------*/
+
 header {
   display: flex;
   padding: 20px 10% 20px 10%;
@@ -71,6 +76,8 @@ header button {
 header > .col1 img {
   width: 150px;
 }
+
+/* ---------------- HOME PAGE & ANNOUCES ----------------*/
 
 section {
   background-color: #ebedee;
@@ -154,6 +161,9 @@ section {
   border-bottom: 1px solid #ebedee;
   padding-bottom: 50px;
 }
+
+/* ---------------- MODALS (LOGIN & SUBSCRIPTION) ----------------*/
+
 .App {
   position: relative;
 }
@@ -192,4 +202,51 @@ input {
 
 .scroll-lock {
   overflow: hidden;
+}
+
+/* ---------------- PUBLISHING ----------------*/
+.publish {
+  padding: 20px 10% 20px 10%;
+}
+.publish > form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.add-a-picture {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.publish > form > div {
+  background-color: white;
+}
+
+.publish > form > div > label {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+.publish > form > div > label > input {
+  width: 50vw;
+}
+.add-a-picture > button {
+  background-color: white;
+  border: #1ab1ba 2px solid;
+  border-radius: 5px;
+  padding: 5px;
+}
+.ok {
+  padding-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+.ok > button {
+  background-color: #1ab1ba;
+  height: 35px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
 }

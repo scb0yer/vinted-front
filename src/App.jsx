@@ -5,9 +5,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import OfferPage from "./pages/OfferPage";
+import Publish from "./pages/Publish";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
-import FilterPage from "./pages/FilterPage";
 import Cookies from "js-cookie";
 
 function App() {
@@ -16,15 +16,16 @@ function App() {
   const [signUpVisible, setSignUpVisible] = useState(false);
   const [loginVisible, setLoginVisible] = useState(false);
   const [token, setToken] = useState(Cookies.get("") || "");
-  // const [keyword, setKeyword] = useState();
+  const [query, setQuery] = useState(["title=", "priceMax=", "priceMin="]);
+  const queries = query.join("&");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://lereacteur-vinted-api.herokuapp.com/offers"
+          `https://lereacteur-vinted-api.herokuapp.com/offers?${queries}`
         );
-        console.log(response.data);
+        console.log(query);
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -32,7 +33,7 @@ function App() {
       }
     };
     fetchData();
-  }, []);
+  }, [query]);
   return isLoading ? (
     <span>En cours de chargement...</span>
   ) : (
@@ -43,15 +44,26 @@ function App() {
         loginVisible={loginVisible}
         signUpVisible={signUpVisible}
         token={token}
-        // setKeyword={setKeyword}
+        setQuery={setQuery}
+        query={query}
       />
       <Routes>
         <Route path="/" element={<HomePage data={data.offers} />} />
         <Route path="/offer/:id" element={<OfferPage data={data.offers} />} />
         <Route
+          path="/publish"
+          element={
+            <Publish
+              token={token}
+              setSignUpVisible={setSignUpVisible}
+              setLoginVisible={setLoginVisible}
+            />
+          }
+        />
+        {/* <Route
           path="/offers?:query"
           element={<FilterPage data={data.offers} />}
-        />
+        /> */}
       </Routes>
       {signUpVisible && (
         <SignUp
