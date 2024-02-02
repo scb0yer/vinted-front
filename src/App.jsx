@@ -23,9 +23,8 @@ function App() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://site--vinted--dzk9mdcz57cb.code.run/offers?${queries}`
+          `http://localhost:3000/offers?${queries}`
         );
-        console.log(query);
         setData(response.data);
         setIsLoading(false);
       } catch (error) {

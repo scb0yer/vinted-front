@@ -14,13 +14,10 @@ const Login = (props) => {
   };
   const postData = async (email, password) => {
     try {
-      const { data } = await axios.post(
-        "https://site--vinted--dzk9mdcz57cb.code.run/user/login",
-        {
-          email: email,
-          password: password,
-        }
-      );
+      const { data } = await axios.post("http://localhost:3000/user/login", {
+        email: email,
+        password: password,
+      });
       props.setVisible(false);
       const token = data.token;
       Cookies.set("token", token, { expires: 0.5 }, { secure: true });

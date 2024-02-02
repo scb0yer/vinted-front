@@ -12,13 +12,13 @@ const Header = (props) => {
       newQuery[0] = `title=${event.target.value}`;
       props.setQuery(newQuery);
       navigate("/");
-    } else if (target === "priceMin") {
-      newQuery[1] = `priceMin=${event.target.value}`;
-      setPriceMin(event.target.value);
-      props.setQuery(newQuery);
     } else if (target === "priceMax") {
-      newQuery[2] = `priceMax=${event.target.value}`;
+      newQuery[1] = `priceMax=${event.target.value}`;
       setPriceMax(event.target.value);
+      props.setQuery(newQuery);
+    } else if (target === "priceMin") {
+      newQuery[2] = `priceMin=${event.target.value}`;
+      setPriceMin(event.target.value);
       props.setQuery(newQuery);
     }
   };
