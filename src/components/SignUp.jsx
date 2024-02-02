@@ -22,12 +22,15 @@ const SignUp = ({ setVisible, setLoginVisible }) => {
 
   const postData = async (name, email, password, newsletter) => {
     try {
-      const { data } = await axios.post("http://localhost:3000/user/signup", {
-        username: name,
-        email: email,
-        password: password,
-        newsletter: newsletter,
-      });
+      const { data } = await axios.post(
+        "https://site--vinted--dzk9mdcz57cb.code.run/user/signup",
+        {
+          username: name,
+          email: email,
+          password: password,
+          newsletter: newsletter,
+        }
+      );
       alert("Votre compte a bien été créé.");
       console.log(data);
       setVisible(false);

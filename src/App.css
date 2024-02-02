@@ -233,9 +233,17 @@ input {
 }
 .add-a-picture > button {
   background-color: white;
-  border: #1ab1ba 2px solid;
+  border: #1ab1ba 1px solid;
   border-radius: 5px;
   padding: 5px;
+}
+.add-a-picture > button > input::file-selector-button {
+  margin-right: 8px;
+  border: none;
+  background: #1ab1ba;
+  padding: 8px 12px;
+  color: #fff;
+  cursor: pointer;
 }
 .ok {
   padding-top: 30px;

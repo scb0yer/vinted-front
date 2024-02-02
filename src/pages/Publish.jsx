@@ -34,11 +34,6 @@ export default function Publish(props) {
         newPictures.push(event.target.files[i]);
       }
       setPictures(newPictures);
-      // for (const key in pictures) {
-      //   if (Object.hasOwnProperty.call(pictures, key)) {
-      //     formData.append("picturesToUpload", pictures[key]);
-      //   }
-      // }
     }
   };
   const postData = async (
@@ -66,7 +61,7 @@ export default function Publish(props) {
     formData.append("color", color);
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/offer/publish",
+        "https://site--vinted--dzk9mdcz57cb.code.run/offer/publish",
         formData,
         {
           headers: {
