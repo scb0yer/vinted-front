@@ -14,6 +14,7 @@ import Cookies from "js-cookie";
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
+  const [productToBuy, setProductToBuy] = useState([]);
   const [signUpVisible, setSignUpVisible] = useState(false);
   const [loginVisible, setLoginVisible] = useState(false);
   const [token, setToken] = useState(Cookies.get("") || "");
@@ -51,7 +52,13 @@ function App() {
         <Route path="/" element={<HomePage data={data.offers} />} />
         <Route
           path="/offer/:id"
-          element={<OfferPage data={data.offers} token={token} />}
+          element={
+            <OfferPage
+              data={data.offers}
+              token={token}
+              setProductToBuy={setProductToBuy}
+            />
+          }
         />
         <Route
           path="/payment"
@@ -61,6 +68,7 @@ function App() {
               token={token}
               setSignUpVisible={setSignUpVisible}
               setLoginVisible={setLoginVisible}
+              productToBuy={productToBuy}
             />
           }
         />

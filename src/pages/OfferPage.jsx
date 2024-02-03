@@ -81,6 +81,10 @@ export default function OfferPage(props) {
                 <div>
                   <button
                     onClick={(event) => {
+                      const productToBuy = [];
+                      productToBuy.push(offer.product_name);
+                      productToBuy.push(offer.product_price);
+                      props.setProductToBuy(productToBuy);
                       navigate("/payment");
                     }}
                   >

@@ -11,8 +11,10 @@ export default function PaymentPage(props) {
       <Elements stripe={stripePromise}>
         <CheckoutForm
           token={props.token}
+          data={props.data.offers}
           setSignUpVisible={props.setSignUpVisible}
           setLoginVisible={props.setLoginVisible}
+          productToBuy={props.productToBuy}
         />
       </Elements>
     </section>
