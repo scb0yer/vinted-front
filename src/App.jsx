@@ -16,14 +16,14 @@ function App() {
   const [signUpVisible, setSignUpVisible] = useState(false);
   const [loginVisible, setLoginVisible] = useState(false);
   const [token, setToken] = useState(Cookies.get("") || "");
-  const [query, setQuery] = useState(["title=", "priceMax=", "priceMin="]);
+  const [query, setQuery] = useState(["title=", "priceMax=500", "priceMin=0"]);
   const queries = query.join("&");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/offers?${queries}`
+          `https://site--vinted--dzk9mdcz57cb.code.run/offers?${queries}`
         );
         setData(response.data);
         setIsLoading(false);

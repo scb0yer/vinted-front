@@ -11,7 +11,7 @@ export default function OfferPage(props) {
           offer._id === id && (
             <div className="offerPage" key={index}>
               <div>
-                <img src={offer.product_pictures[0].secure_url} alt="photo" />
+                <img src={offer.product_image[0]} alt="photo" />
               </div>
               <div>
                 <div className="font-xl">

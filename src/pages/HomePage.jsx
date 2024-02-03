@@ -23,7 +23,7 @@ export default function HomePage(props) {
               <div>
                 <img
                   className="photo"
-                  src={offer.product_pictures[0].secure_url}
+                  src={offer.product_image[0]}
                   alt="photo"
                 />
               </div>

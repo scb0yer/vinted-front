@@ -61,7 +61,7 @@ export default function Publish(props) {
     formData.append("color", color);
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/offer/publish",
+        "https://site--vinted--dzk9mdcz57cb.code.run/offer/publish",
         formData,
         {
           headers: {
