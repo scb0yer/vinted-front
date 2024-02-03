@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function OfferPage(props) {
+  const navigate = useNavigate();
   const { id } = useParams();
   console.log("params id>>", id);
 
@@ -77,7 +79,13 @@ export default function OfferPage(props) {
                   </div>
                 </div>
                 <div>
-                  <button>Acheter</button>
+                  <button
+                    onClick={(event) => {
+                      navigate("/payment");
+                    }}
+                  >
+                    Acheter
+                  </button>
                 </div>
               </div>
             </div>

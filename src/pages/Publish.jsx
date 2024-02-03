@@ -217,7 +217,7 @@ export default function Publish(props) {
       </div>
     </section>
   ) : (
-    <section>
+    <section className="notLogged">
       <div>Vous devez vous identifier pour accéder à cette page.</div>
       <div>
         <button

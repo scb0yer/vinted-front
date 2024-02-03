@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import OfferPage from "./pages/OfferPage";
+import PaymentPage from "./pages/PaymentPage";
 import Publish from "./pages/Publish";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
@@ -48,7 +49,21 @@ function App() {
       />
       <Routes>
         <Route path="/" element={<HomePage data={data.offers} />} />
-        <Route path="/offer/:id" element={<OfferPage data={data.offers} />} />
+        <Route
+          path="/offer/:id"
+          element={<OfferPage data={data.offers} token={token} />}
+        />
+        <Route
+          path="/payment"
+          element={
+            <PaymentPage
+              data={data.offers}
+              token={token}
+              setSignUpVisible={setSignUpVisible}
+              setLoginVisible={setLoginVisible}
+            />
+          }
+        />
         <Route
           path="/publish"
           element={
