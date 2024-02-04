@@ -104,9 +104,13 @@ section {
   width: 240px;
   height: 350px;
   object-fit: cover;
+  transition-duration: 0.5s;
+}
+.photo:hover {
+  opacity: 0.4;
 }
 .banner {
-  height: 580px;
+  height: 520px;
   width: 100%;
   object-fit: cover;
 }
@@ -129,15 +133,45 @@ section {
   margin-right: 10%;
   gap: 20px;
 }
-.offerPage > div:first-child {
+.picturesContainer {
   margin-top: 30px;
   width: 400px;
+  display: flex;
+  gap: 10px;
 }
-.offerPage > div:first-child > img {
-  width: 400px;
+.mainPicture > img {
+  width: 300px;
+  height: 500px;
+  object-fit: cover;
+}
+.uniquePicture > img {
+  width: 500px;
+  height: 500px;
   object-fit: contain;
 }
+.otherPictures {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.otherPictures > div:first-child > img {
+  width: 200px;
+  height: 240px;
+  object-fit: cover;
+}
+.otherPictures > div:last-child > img {
+  width: 170px;
+  height: 220px;
+  object-fit: cover;
+}
+.otherPictures > div:last-child > div > img {
+  width: 90px;
+  height: 200px;
+  object-fit: cover;
+}
+
 .offerPage > div:last-child {
+  flex: 0.6;
   margin-top: 30px;
   background-color: white;
   padding: 40px;
@@ -239,7 +273,7 @@ input {
   gap: 20px;
 }
 .add-a-picture {
-  height: 100px;
+  height: 150px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -282,6 +316,21 @@ input {
   border: none;
   border-radius: 5px;
   margin-top: 20px;
+}
+.dropzone {
+  border: #1ab1ba 1px dashed;
+  width: 90%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+}
+.miniature {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
 }
 
 /* ---------------- PUBLISHING ----------------*/

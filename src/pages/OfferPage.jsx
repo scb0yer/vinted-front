@@ -12,8 +12,45 @@ export default function OfferPage(props) {
         return (
           offer._id === id && (
             <div className="offerPage" key={index}>
-              <div>
-                <img src={offer.product_image[0]} alt="photo" />
+              <div className="picturesContainer">
+                <div
+                  className={
+                    offer.product_image[1] ? "mainPicture" : "uniquePicture"
+                  }
+                >
+                  {offer.product_image[0] && (
+                    <img src={offer.product_image[0]} alt="photo" />
+                  )}
+                </div>
+                {offer.product_image[1] && (
+                  <div className="otherPictures">
+                    <div>
+                      {offer.product_image[1] && (
+                        <img src={offer.product_image[1]} alt="photo" />
+                      )}
+                    </div>
+                    {!offer.product_image[3] ? (
+                      <div>
+                        {offer.product_image[2] && (
+                          <img src={offer.product_image[2]} alt="photo" />
+                        )}
+                      </div>
+                    ) : (
+                      <div>
+                        <div>
+                          {offer.product_image[2] && (
+                            <img src={offer.product_image[2]} alt="photo" />
+                          )}
+                        </div>
+                        <div>
+                          {offer.product_image[3] && (
+                            <img src={offer.product_image[3]} alt="photo" />
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
               <div>
                 <div className="font-xl">
