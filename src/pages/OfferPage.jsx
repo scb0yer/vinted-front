@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 export default function OfferPage(props) {
   const navigate = useNavigate();
   const { id } = useParams();
-  console.log("params id>>", id);
 
   return (
     <section>
@@ -15,7 +14,9 @@ export default function OfferPage(props) {
               <div className="picturesContainer">
                 <div
                   className={
-                    offer.product_image[1] ? "mainPicture" : "uniquePicture"
+                    offer.product_image[1]
+                      ? "mainPicture small"
+                      : "uniquePicture small"
                   }
                 >
                   {offer.product_image[0] && (
@@ -23,26 +24,26 @@ export default function OfferPage(props) {
                   )}
                 </div>
                 {offer.product_image[1] && (
-                  <div className="otherPictures">
+                  <div className="otherPictures small">
                     <div>
                       {offer.product_image[1] && (
                         <img src={offer.product_image[1]} alt="photo" />
                       )}
                     </div>
                     {!offer.product_image[3] ? (
-                      <div>
+                      <div className="small">
                         {offer.product_image[2] && (
                           <img src={offer.product_image[2]} alt="photo" />
                         )}
                       </div>
                     ) : (
-                      <div>
-                        <div>
+                      <div className="pictureContainer2">
+                        <div className="small">
                           {offer.product_image[2] && (
                             <img src={offer.product_image[2]} alt="photo" />
                           )}
                         </div>
-                        <div>
+                        <div className="small">
                           {offer.product_image[3] && (
                             <img src={offer.product_image[3]} alt="photo" />
                           )}
@@ -62,34 +63,34 @@ export default function OfferPage(props) {
                     return (
                       <div key={index}>
                         <div>
-                          {detail.MARQUE && (
+                          {detail.marque && (
                             <div className="subDetails">
                               <div>MARQUE :</div>
-                              <div>{detail.MARQUE}</div>
+                              <div>{detail.marque}</div>
                             </div>
                           )}
-                          {detail.TAILLE && (
+                          {detail.taille && (
                             <div className="subDetails">
                               <div>TAILLE :</div>
-                              <div>{detail.TAILLE}</div>
+                              <div>{detail.taille}</div>
                             </div>
                           )}
-                          {detail.ÉTAT && (
+                          {detail.état && (
                             <div className="subDetails">
                               <div>ÉTAT :</div>
-                              <div>{detail.ÉTAT}</div>
+                              <div>{detail.état}</div>
                             </div>
                           )}
-                          {detail.COULEUR && (
+                          {detail.couleur && (
                             <div className="subDetails">
                               <div>COULEUR :</div>
-                              <div>{detail.COULEUR}</div>
+                              <div>{detail.couleur}</div>
                             </div>
                           )}
-                          {detail.EMPLACEMENT && (
+                          {detail.emplacement && (
                             <div className="subDetails">
                               <div>EMPLACEMENT :</div>
-                              <div>{detail.EMPLACEMENT}</div>
+                              <div>{detail.emplacement}</div>
                             </div>
                           )}
                         </div>

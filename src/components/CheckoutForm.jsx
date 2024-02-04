@@ -12,7 +12,7 @@ const CheckoutForm = (props) => {
     event.preventDefault();
     const cardElement = elements.getElement(CardElement);
     const stripeResponse = await stripe.createToken(cardElement, {
-      name: "L'id de l'acheteur",
+      name: props.userInfos[0],
     });
     console.log(stripeResponse);
     const stripeToken = stripeResponse.token.id;

@@ -82,14 +82,18 @@ const Header = (props) => {
       </div>
       <div className="col3">
         <div>
-          <button
-            onClick={() => {
-              props.setSignUpVisible(true);
-            }}
-          >
-            S'inscrire
-          </button>
           {!props.token ? (
+            <button
+              onClick={() => {
+                props.setSignUpVisible(true);
+              }}
+            >
+              S'inscrire
+            </button>
+          ) : (
+            <Link to="/profil">Profil</Link>
+          )}
+          {!props.token && (
             <button
               onClick={() => {
                 props.setLoginVisible(true);
@@ -97,8 +101,6 @@ const Header = (props) => {
             >
               Se connecter
             </button>
-          ) : (
-            <button>Se déconnecter</button>
           )}
         </div>
         <div>

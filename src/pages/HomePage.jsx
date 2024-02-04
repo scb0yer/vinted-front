@@ -11,14 +11,18 @@ export default function HomePage(props) {
         {props.data.map((offer, index) => {
           return (
             <Link className="offer" to={`/offer/${offer._id}`} key={index}>
-              <div>
-                {offer.owner.account.avatar && (
+              <div className="placeForAvatar">
+                {offer.owner.account.avatar ? (
                   <img
                     className="avatar"
-                    src={offer.owner.account.avatar.secure_url}
+                    src={offer.owner.account.avatar}
                     alt="avatar"
                   />
-                )}{" "}
+                ) : (
+                  <span className="noAvatar">
+                    {offer.owner.account.username[0]}
+                  </span>
+                )}
                 {offer.owner.account.username}
               </div>
               <div>

@@ -25,6 +25,12 @@ const Login = (props) => {
       const token = data.token;
       Cookies.set("token", token, { expires: 0.5 }, { secure: true });
       props.setToken(token);
+      console.log(data);
+      const userInfos = [data._id, data.account.username];
+      if (data.account.avatar) {
+        userInfos.push(data.account.avatar);
+      }
+      props.setUserInfos(userInfos);
     } catch (error) {
       console.log(error.message);
       alert(

@@ -15,6 +15,7 @@ export default function PaymentPage(props) {
           setSignUpVisible={props.setSignUpVisible}
           setLoginVisible={props.setLoginVisible}
           productToBuy={props.productToBuy}
+          userInfos={props.userInfos}
         />
       </Elements>
     </section>

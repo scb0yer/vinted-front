@@ -10,6 +10,7 @@ import Publish from "./pages/Publish";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import Cookies from "js-cookie";
+import ProfilPage from "./pages/ProfilPage";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -18,6 +19,7 @@ function App() {
   const [signUpVisible, setSignUpVisible] = useState(false);
   const [loginVisible, setLoginVisible] = useState(false);
   const [token, setToken] = useState(Cookies.get("") || "");
+  const [userInfos, setUserInfos] = useState([]);
   const [count, setCount] = useState(1);
   const [query, setQuery] = useState([
     "title=",
@@ -57,9 +59,11 @@ function App() {
         loginVisible={loginVisible}
         signUpVisible={signUpVisible}
         token={token}
+        setToken={setToken}
         setQuery={setQuery}
         query={query}
         setCount={setCount}
+        setUserInfos={setUserInfos}
       />
       <Routes>
         <Route
@@ -95,6 +99,7 @@ function App() {
               setSignUpVisible={setSignUpVisible}
               setLoginVisible={setLoginVisible}
               productToBuy={productToBuy}
+              userInfos={userInfos}
             />
           }
         />
@@ -103,6 +108,18 @@ function App() {
           element={
             <Publish
               token={token}
+              setSignUpVisible={setSignUpVisible}
+              setLoginVisible={setLoginVisible}
+            />
+          }
+        />
+        <Route
+          path="/profil"
+          element={
+            <ProfilPage
+              userInfos={userInfos}
+              token={token}
+              setToken={setToken}
               setSignUpVisible={setSignUpVisible}
               setLoginVisible={setLoginVisible}
             />
@@ -121,6 +138,7 @@ function App() {
           setLoginVisible={setLoginVisible}
           setSignUpVisible={setSignUpVisible}
           setToken={setToken}
+          setUserInfos={setUserInfos}
         />
       )}
       ;
