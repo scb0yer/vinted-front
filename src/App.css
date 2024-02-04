@@ -1,4 +1,4 @@
-/* ---------------- FONT & SUBTITLES ----------------*/
+/* ---------------- FONT & SUBTITLES & GENERAL ----------------*/
 
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap");
 body {
@@ -24,6 +24,12 @@ h2 {
 a {
   color: rgb(90, 90, 90);
   text-decoration: none;
+}
+button {
+  transition-duration: 0.5s;
+}
+button:hover {
+  opacity: 0.4;
 }
 
 /* ---------------- HEADER ----------------*/
@@ -60,6 +66,7 @@ header button {
   margin: 5px;
   color: #1ab1ba;
 }
+
 #search {
   width: 100%;
   height: 40px;
@@ -75,6 +82,11 @@ header button {
 }
 header > .col1 img {
   width: 150px;
+  transition-duration: 0.5s;
+}
+
+header > .col1 img:hover {
+  opacity: 0.4;
 }
 
 /* ---------------- HOME PAGE & ANNOUCES ----------------*/
@@ -160,6 +172,19 @@ section {
 .details {
   border-bottom: 1px solid #ebedee;
   padding-bottom: 50px;
+}
+.loadMore {
+  text-align: center;
+}
+.loadMore > button {
+  background-color: #1ab1ba;
+  width: 20%;
+  height: 35px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 20px;
 }
 
 /* ---------------- MODALS (LOGIN & SUBSCRIPTION) ----------------*/
@@ -267,4 +292,12 @@ input {
 /* ---------------- OTHER PAGES ----------------*/
 .notLogged {
   padding: 20px 10% 20px 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.notLogged > div:last-child {
+  display: flex;
+  gap: 30px;
 }

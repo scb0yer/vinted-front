@@ -30,9 +30,15 @@ const Header = (props) => {
         ? document.body.classList.add("scroll-lock")
         : document.body.classList.remove("scroll-lock")}
       <div className="col1">
-        <Link to={`/`}>
-          <img src={Vinted_Logo} alt="Logo" />
-        </Link>
+        <img
+          onClick={(event) => {
+            props.setCount(1);
+            props.setQuery(["title=", "priceMax=500", "priceMin=0", "count=1"]);
+            navigate("/");
+          }}
+          src={Vinted_Logo}
+          alt="Logo"
+        />
       </div>
       <div className="col2">
         <div>

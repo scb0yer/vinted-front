@@ -18,11 +18,14 @@ const CheckoutForm = (props) => {
     const stripeToken = stripeResponse.token.id;
     const title = props.productToBuy[0];
     const amount = props.productToBuy[1];
-    const response = await axios.post("http://localhost:3000/payment", {
-      stripeToken,
-      title,
-      amount,
-    });
+    const response = await axios.post(
+      "https://site--vinted--dzk9mdcz57cb.code.run/payment",
+      {
+        stripeToken,
+        title,
+        amount,
+      }
+    );
     if (response.data.status === "succeeded") {
       setCompleted(true);
     }

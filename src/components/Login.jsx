@@ -21,19 +21,22 @@ const Login = (props) => {
           password: password,
         }
       );
-      props.setVisible(false);
+      props.setLoginVisible(false);
       const token = data.token;
       Cookies.set("token", token, { expires: 0.5 }, { secure: true });
       props.setToken(token);
     } catch (error) {
       console.log(error.message);
+      alert(
+        "Mauvais identifiants. Veuillez rentrer l'adresse email avec laquelle vous vous êtes inscrit(e)."
+      );
     }
   };
   return (
     <div
       className="modal-root"
       onClick={() => {
-        props.setVisible(false);
+        props.setLoginVisible(false);
       }}
     >
       <form
@@ -42,6 +45,14 @@ const Login = (props) => {
           event.stopPropagation();
         }}
       >
+        <button
+          className="close"
+          onClick={() => {
+            setLoginVisible(false);
+          }}
+        >
+          x
+        </button>
         <h2>Se connecter</h2>
         <input
           type="email"
@@ -67,6 +78,15 @@ const Login = (props) => {
         >
           Se connecter
         </button>
+        <br />
+        <a
+          onClick={() => {
+            props.setSignUpVisible(true);
+            props.setLoginVisible(false);
+          }}
+        >
+          Pas encore de compte ? Inscris-toi !
+        </a>
       </form>
     </div>
   );

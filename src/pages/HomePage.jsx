@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import Image from "../assets/vignette-focus.jpg";
 
 export default function HomePage(props) {
@@ -45,6 +46,17 @@ export default function HomePage(props) {
             </Link>
           );
         })}
+      </div>
+      <div className="loadMore">
+        {props.dataNb > 15 * props.count && (
+          <button
+            onClick={(event) => {
+              props.setCount(props.count + 1);
+            }}
+          >
+            Afficher plus
+          </button>
+        )}
       </div>
     </div>
   );

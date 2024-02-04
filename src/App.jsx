@@ -18,8 +18,20 @@ function App() {
   const [signUpVisible, setSignUpVisible] = useState(false);
   const [loginVisible, setLoginVisible] = useState(false);
   const [token, setToken] = useState(Cookies.get("") || "");
-  const [query, setQuery] = useState(["title=", "priceMax=500", "priceMin=0"]);
+  const [count, setCount] = useState(1);
+  const [query, setQuery] = useState([
+    "title=",
+    "priceMax=500",
+    "priceMin=0",
+    "count=1",
+  ]);
   const queries = query.join("&");
+
+  useEffect(() => {
+    const newQuery = [...query];
+    newQuery[3] = `count=${count}`;
+    setQuery(newQuery);
+  }, [count]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,9 +59,23 @@ function App() {
         token={token}
         setQuery={setQuery}
         query={query}
+        setCount={setCount}
       />
       <Routes>
-        <Route path="/" element={<HomePage data={data.offers} />} />
+        <Route
+          path="/"
+          element={
+            <HomePage
+              data={data.offers}
+              setData={setData}
+              dataNb={data.count}
+              query={query}
+              setQuery={setQuery}
+              setCount={setCount}
+              count={count}
+            />
+          }
+        />
         <Route
           path="/offer/:id"
           element={
@@ -82,10 +108,6 @@ function App() {
             />
           }
         />
-        {/* <Route
-          path="/offers?:query"
-          element={<FilterPage data={data.offers} />}
-        /> */}
       </Routes>
       {signUpVisible && (
         <SignUp
@@ -95,7 +117,11 @@ function App() {
       )}
       ;
       {loginVisible && (
-        <Login setVisible={setLoginVisible} setToken={setToken} />
+        <Login
+          setLoginVisible={setLoginVisible}
+          setSignUpVisible={setSignUpVisible}
+          setToken={setToken}
+        />
       )}
       ;
     </Router>
