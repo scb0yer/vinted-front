@@ -244,7 +244,14 @@ export default function Publish(props) {
         <button
           onClick={(event) => {
             event.preventDefault();
-            if (title && price && description & condition && city && pictures) {
+            if (
+              title &&
+              price &&
+              description &&
+              condition &&
+              city &&
+              pictures
+            ) {
               postData(
                 title,
                 description,
