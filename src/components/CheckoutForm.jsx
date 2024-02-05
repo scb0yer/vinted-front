@@ -5,7 +5,6 @@ import axios from "axios";
 const CheckoutForm = (props) => {
   const stripe = useStripe();
   const elements = useElements();
-
   const [completed, setCompleted] = useState(false);
 
   const handleSubmit = async (event) => {
@@ -17,7 +16,7 @@ const CheckoutForm = (props) => {
     console.log(stripeResponse);
     const stripeToken = stripeResponse.token.id;
     const title = props.productToBuy[0];
-    const amount = props.productToBuy[1];
+    const amount = props.amount;
     const response = await axios.post(
       "https://site--vinted--dzk9mdcz57cb.code.run/payment",
       {
@@ -35,7 +34,34 @@ const CheckoutForm = (props) => {
     <>
       {props.token ? (
         !completed ? (
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="payment">
+            <div>
+              <h2>Résumé de la commande</h2>
+            </div>
+            <div>
+              <div>
+                <div>{props.productToBuy[0]} : </div>
+                <div>{props.productToBuy[1]} €</div>
+              </div>
+              <div>
+                <div>Frais de protection acheteurs :</div>
+                <div>{props.buyerCosts} €</div>
+              </div>
+              <div>
+                <div>Frais de port :</div>
+                <div>{props.shippingCosts} €</div>
+              </div>
+            </div>
+            <div>
+              <div>
+                <div>
+                  <strong>Total :</strong>
+                </div>
+                <div>
+                  <strong>{props.amount} €</strong>
+                </div>
+              </div>
+            </div>
             <CardElement />
             <button type="submit">Valider</button>
           </form>

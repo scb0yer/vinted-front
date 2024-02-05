@@ -1,16 +1,43 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import React, { useCallback } from "react";
+import { useDropzone } from "react-dropzone";
 
 const SignUp = ({ setVisible, setLoginVisible }) => {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
   const [newsletter, setNewsletter] = useState(false);
+  const [preview, setPreview] = useState(null);
+  const [avatar, setAvatar] = useState({});
+
+  function MyDropzone() {
+    const onDrop = useCallback((acceptedFiles) => {
+      if (acceptedFiles.length > 1) {
+        alert("Tu ne peux ajouter qu'un fichier.");
+      } else {
+        setPreview(URL.createObjectURL(acceptedFiles[0]));
+        setAvatar(acceptedFiles[0]);
+        console.log(acceptedFiles[0]);
+      }
+    }, []);
+    const { getRootProps, getInputProps } = useDropzone({ onDrop });
+    return (
+      <div {...getRootProps()} className="dropzone">
+        <input {...getInputProps()} />
+        <p>Dépose ton avatar ici ou clique pour l'ajouter</p>
+        <div>
+          {preview && <img src={preview} className="miniature" alt="preview" />}
+        </div>
+      </div>
+    );
+  }
+
   const onChange = (event, target) => {
-    if (target === "name") {
-      setName(event.target.value);
+    if (target === "username") {
+      setUsername(event.target.value);
     } else if (target === "email") {
       setEmail(event.target.value);
     } else if (target === "password") {
@@ -20,15 +47,16 @@ const SignUp = ({ setVisible, setLoginVisible }) => {
     }
   };
 
-  const postData = async (name, email, password, newsletter) => {
+  const postData = async (username, email, password, newsletter, avatar) => {
     try {
       const { data } = await axios.post(
         "https://site--vinted--dzk9mdcz57cb.code.run/user/signup",
         {
-          username: name,
           email: email,
           password: password,
+          username: username,
           newsletter: newsletter,
+          avatar: avatar,
         }
       );
       alert("Votre compte a bien été créé.");
@@ -63,10 +91,10 @@ const SignUp = ({ setVisible, setLoginVisible }) => {
         <h2>S'inscrire</h2>
         <input
           type="text"
-          id="name"
+          id="username"
           placeholder="Nom d'utilisateur"
           onChange={(event) => {
-            onChange(event, "name");
+            onChange(event, "username");
           }}
         />
         <input
@@ -102,10 +130,13 @@ const SignUp = ({ setVisible, setLoginVisible }) => {
           Conditions et Politiques de Confidentialité de Vinted. Je confirme
           avoir au moins 18 ans.
         </p>
+        <MyDropzone />
         <button
           onClick={(event) => {
-            event.preventDefault();
-            postData(name, email, password, newsletter);
+            if (username && password && email) {
+              event.preventDefault();
+              postData(username, email, password, newsletter, avatar);
+            }
           }}
         >
           S'inscrire

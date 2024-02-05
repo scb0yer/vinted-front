@@ -31,14 +31,24 @@ button {
 button:hover {
   opacity: 0.4;
 }
+strong {
+  font-weight: 600;
+}
+
+.relative {
+  position: relative;
+}
 
 /* ---------------- HEADER ----------------*/
 
 header {
   display: flex;
   padding: 20px 10% 20px 10%;
+  width: 100%;
   gap: 20px;
   flex-wrap: nowrap;
+  position: fixed;
+  background-color: white;
 }
 header .col1 {
   flex: 1;
@@ -93,6 +103,7 @@ header > .col1 img:hover {
 
 section {
   background-color: #ebedee;
+  padding-top: 150px;
 }
 .placeForAvatar {
   height: 30px;
@@ -125,6 +136,7 @@ section {
   height: 520px;
   width: 100%;
   object-fit: cover;
+  padding-top: 120px;
 }
 .container {
   display: flex;
@@ -151,6 +163,9 @@ section {
   width: 400px;
   display: flex;
   gap: 10px;
+}
+.picturesContainer > div {
+  flex: 1;
 }
 .picturesContainer2 {
   display: flex;
@@ -181,9 +196,9 @@ section {
   height: 225px;
   object-fit: cover;
 }
-.otherPictures > div:last-child > div > img {
-  width: 90px;
-  height: 200px;
+.otherPictures > div:last-child img {
+  width: 40%;
+  height: 120px;
   object-fit: cover;
 }
 
@@ -252,7 +267,7 @@ section {
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 0;
+  top: 155px;
   left: 0;
   background-color: rgba(0, 0, 0, 0.3);
 }
@@ -284,7 +299,7 @@ input {
 
 /* ---------------- PUBLISHING ----------------*/
 .publish {
-  padding: 20px 10% 20px 10%;
+  padding: 150px 10% 20px 10%;
 }
 .publish > form {
   display: flex;
@@ -352,17 +367,84 @@ input {
   object-fit: contain;
 }
 
-/* ---------------- PUBLISHING ----------------*/
+/* ---------------- PAYMENT ----------------*/
 .paymentPage {
-  padding: 20px 10% 20px 10%;
+  padding: 150px 10% 20px 10%;
+  height: 80vh;
+}
+.payment {
+  width: 600px;
+  padding: 50px;
+  margin: auto;
+  background-color: white;
+  border: grey 1px solid;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.payment > div > div {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(210, 209, 209);
 }
 /* ---------------- PROFIL ----------------*/
 .profil {
-  padding: 20px 10% 20px 10%;
+  padding: 150px 10% 20px 10%;
+}
+.profil > div {
+  width: 60%;
+  height: 60vh;
+  margin: auto;
+  border: rgb(196, 196, 196) 2px solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+}
+.profil .relative {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.profil > div > div {
+  padding-left: 30px;
+  gap: 50px;
+  display: flex;
+  justify-content: flex-start;
+}
+.profilAvatar {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: rgb(196, 196, 196) 2px solid;
+}
+.profil button {
+  background-color: #1ab1ba;
+  height: 30px;
+  width: 80%;
+  margin: auto;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+.profil .x {
+  width: 30px;
+  position: absolute;
+  right: 50px;
+  top: -30px;
+}
+.profil .send {
+  width: 100px;
+}
+.profil .chooseAvatarButton {
+  width: 150px;
 }
 /* ---------------- OTHER PAGES ----------------*/
 .notLogged {
-  padding: 20px 10% 20px 10%;
+  padding: 150px 10% 20px 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -376,17 +458,28 @@ input {
 /* ---------------- MEDIA QUERIES ----------------*/
 @media (max-width: 1000px) {
   .picturesContainer,
-  .pictureContainer2,
+  .picturesContainer2,
   .subDetails {
     flex-direction: column;
+    gap: 10px;
+    justify-content: flex-start;
   }
   .details {
     width: 100%;
   }
 
-  .small > img {
+  .offerPage img,
+  .otherPictures > div:last-child img {
     width: 220px;
     height: 200px;
     object-fit: cover;
+  }
+  header .col3 {
+    display: none;
+  }
+}
+@media (min-width: 1001px) {
+  .invisible-large {
+    display: none;
   }
 }

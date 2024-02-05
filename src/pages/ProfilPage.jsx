@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 
@@ -25,7 +25,7 @@ export default function ProfilPage(props) {
     return (
       <div {...getRootProps()} className="dropzone">
         <input {...getInputProps()} />
-        <p>Dépose tes photos ici ou clique pour les ajouter ✩</p>
+        <p>Dépose ton avatar ici ou clique pour l'ajouter</p>
         <div>
           {preview && <img src={preview} className="miniature" alt="preview" />}
         </div>
@@ -37,13 +37,16 @@ export default function ProfilPage(props) {
     const formData = new FormData();
     formData.append("avatar", avatar);
     formData.append("_id", props.userInfos[0]);
+    formData.append("username", props.userInfos[1]);
     try {
       const { data } = await axios.post(
         "https://site--vinted--dzk9mdcz57cb.code.run/user/addAvatar",
         formData
       );
       alert("Votre avatar a bien été ajouté.");
-      props.userInfos[2] = data.result.secure_url;
+      const userInfos = [...props.userInfos];
+      userInfos[2] = data.result.secure_url;
+      props.setUserInfos(userInfos);
     } catch (error) {
       console.log(error.message);
     }
@@ -52,54 +55,77 @@ export default function ProfilPage(props) {
   return props.token ? (
     <div className="profil">
       <div>
-        <div>Username :</div>
-        <div>{props.userInfos[1]}</div>
-      </div>
-      <div>
-        <div>Avatar :</div>
         <div>
-          {props.userInfos[2] ? (
-            <div>
-              {props.userInfos[2]}
-              <div>Changer d'avatar</div>
-            </div>
-          ) : (
+          <div>Username :</div>
+          <div>{props.userInfos[1]}</div>
+        </div>
+        <div>
+          <div>Avatar :</div>
+          <div>
+            {props.userInfos[2] ? (
+              <div>
+                <img
+                  src={props.userInfos[2]}
+                  alt="avatar"
+                  className="profilAvatar"
+                  onClick={() => {
+                    setChangeAvatar(true);
+                  }}
+                />
+              </div>
+            ) : (
+              <button
+                className="chooseAvatarButton"
+                onClick={() => {
+                  setChangeAvatar(true);
+                }}
+              >
+                choisir un avatar
+              </button>
+            )}
+          </div>
+        </div>
+        {changeAvatar && (
+          <form className="relative">
+            {changeAvatar && (
+              <button
+                className="x"
+                onClick={() => {
+                  setChangeAvatar(false);
+                }}
+              >
+                X
+              </button>
+            )}
+            <MyDropzone />
             <button
-              onClick={() => {
-                setChangeAvatar(true);
+              className="send"
+              onClick={(event) => {
+                event.preventDefault();
+                if (preview) {
+                  postData(props.userInfos[0], avatar);
+                } else {
+                  alert("Il faut sélectionner une image.");
+                }
               }}
             >
-              choisir un avatar
+              Envoyer
             </button>
-          )}
-        </div>
+          </form>
+        )}
+        <button>
+          <Link to={`/publish`}>Vends tes articles</Link>
+        </button>
+        <button
+          onClick={() => {
+            props.setToken(null);
+            props.setUserInfos([]);
+            navigate("/");
+          }}
+        >
+          Se déconnecter
+        </button>
       </div>
-      {changeAvatar && (
-        <form>
-          <MyDropzone />
-          <button
-            onClick={(event) => {
-              event.preventDefault();
-              if (preview) {
-                postData(props.userInfos[0], avatar);
-              } else {
-                alert("Il faut sélectionner une image.");
-              }
-            }}
-          >
-            Envoyer
-          </button>
-        </form>
-      )}
-      <button
-        onClick={() => {
-          props.setToken(null);
-          props.setUserInfos([]);
-          navigate("/");
-        }}
-      >
-        Se déconnecter
-      </button>
     </div>
   ) : (
     <section className="notLogged">

@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
 import React, { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
 
 export default function Publish(props) {
+  const navigate = useNavigate();
   const [title, setTitle] = useState(null);
   const [description, setDescription] = useState(null);
   const [price, setPrice] = useState(null);
@@ -116,6 +118,7 @@ export default function Publish(props) {
       alert("Votre annonce a bien été créée.");
       console.log(title);
       console.log(data);
+      navigate("/");
     } catch (error) {
       console.log(error.message);
     }

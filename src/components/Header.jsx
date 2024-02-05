@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Vinted_Logo from "../assets/Vinted_Logo.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { translate } from "react-range/lib/utils";
 
 const Header = (props) => {
   const newQuery = [...props.query];
@@ -80,6 +82,15 @@ const Header = (props) => {
           </div>
         </div>
       </div>
+      <div className="invisible-large">
+        <Link to="/profil">
+          <FontAwesomeIcon
+            icon="user"
+            size="2xl"
+            style={{ color: "#1bb1ba" }}
+          />
+        </Link>
+      </div>
       <div className="col3">
         <div>
           {!props.token ? (
@@ -91,7 +102,13 @@ const Header = (props) => {
               S'inscrire
             </button>
           ) : (
-            <Link to="/profil">Profil</Link>
+            <Link to="/profil">
+              <FontAwesomeIcon
+                icon="user"
+                size="2xl"
+                style={{ color: "#1bb1ba" }}
+              />
+            </Link>
           )}
           {!props.token && (
             <button

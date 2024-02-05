@@ -1,9 +1,19 @@
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function OfferPage(props) {
   const navigate = useNavigate();
   const { id } = useParams();
+
+  useEffect(() => {
+    const amount =
+      Number(props.productToBuy[1]) +
+      Number(props.buyerCosts) +
+      Number(props.shippingCosts);
+    amount.toFixed(2);
+    props.setAmount(amount);
+  }, [props.productToBuy]);
 
   return (
     <section>
@@ -14,9 +24,7 @@ export default function OfferPage(props) {
               <div className="picturesContainer">
                 <div
                   className={
-                    offer.product_image[1]
-                      ? "mainPicture small"
-                      : "uniquePicture small"
+                    offer.product_image[1] ? "mainPicture " : "uniquePicture "
                   }
                 >
                   {offer.product_image[0] && (
@@ -24,30 +32,27 @@ export default function OfferPage(props) {
                   )}
                 </div>
                 {offer.product_image[1] && (
-                  <div className="otherPictures small">
+                  <div className="otherPictures">
                     <div>
                       {offer.product_image[1] && (
                         <img src={offer.product_image[1]} alt="photo" />
                       )}
                     </div>
                     {!offer.product_image[3] ? (
-                      <div className="small">
+                      <div>
                         {offer.product_image[2] && (
                           <img src={offer.product_image[2]} alt="photo" />
                         )}
                       </div>
                     ) : (
-                      <div className="pictureContainer2">
-                        <div className="small">
-                          {offer.product_image[2] && (
-                            <img src={offer.product_image[2]} alt="photo" />
-                          )}
-                        </div>
-                        <div className="small">
-                          {offer.product_image[3] && (
-                            <img src={offer.product_image[3]} alt="photo" />
-                          )}
-                        </div>
+                      <div className="picturesContainer2">
+                        {offer.product_image[2] && (
+                          <img src={offer.product_image[2]} alt="photo" />
+                        )}
+
+                        {offer.product_image[3] && (
+                          <img src={offer.product_image[3]} alt="photo" />
+                        )}
                       </div>
                     )}
                   </div>
@@ -109,7 +114,7 @@ export default function OfferPage(props) {
                     {offer.owner.account.avatar && (
                       <img
                         className="avatar"
-                        src={offer.owner.account.avatar.secure_url}
+                        src={offer.owner.account.avatar}
                         alt="avatar"
                       />
                     )}{" "}

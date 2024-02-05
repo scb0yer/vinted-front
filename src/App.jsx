@@ -11,6 +11,9 @@ import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import Cookies from "js-cookie";
 import ProfilPage from "./pages/ProfilPage";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+library.add(faUser);
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -21,6 +24,7 @@ function App() {
   const [token, setToken] = useState(Cookies.get("") || "");
   const [userInfos, setUserInfos] = useState([]);
   const [count, setCount] = useState(1);
+  const [amount, setAmount] = useState();
   const [query, setQuery] = useState([
     "title=",
     "priceMax=500",
@@ -28,6 +32,8 @@ function App() {
     "count=1",
   ]);
   const queries = query.join("&");
+  const buyerCosts = 0.4;
+  const shippingCosts = 0.8;
 
   useEffect(() => {
     const newQuery = [...query];
@@ -52,7 +58,7 @@ function App() {
   return isLoading ? (
     <span>En cours de chargement...</span>
   ) : (
-    <Router>
+    <Router className="relative">
       <Header
         setSignUpVisible={setSignUpVisible}
         setLoginVisible={setLoginVisible}
@@ -87,6 +93,10 @@ function App() {
               data={data.offers}
               token={token}
               setProductToBuy={setProductToBuy}
+              productToBuy={productToBuy}
+              setAmount={setAmount}
+              buyerCosts={buyerCosts}
+              shippingCosts={shippingCosts}
             />
           }
         />
@@ -100,6 +110,9 @@ function App() {
               setLoginVisible={setLoginVisible}
               productToBuy={productToBuy}
               userInfos={userInfos}
+              buyerCosts={buyerCosts}
+              shippingCosts={shippingCosts}
+              amount={amount}
             />
           }
         />
@@ -118,6 +131,7 @@ function App() {
           element={
             <ProfilPage
               userInfos={userInfos}
+              setUserInfos={setUserInfos}
               token={token}
               setToken={setToken}
               setSignUpVisible={setSignUpVisible}

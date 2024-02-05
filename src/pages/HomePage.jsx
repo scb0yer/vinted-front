@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
 import Image from "../assets/vignette-focus.jpg";
 
 export default function HomePage(props) {
