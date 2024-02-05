@@ -1,11 +1,11 @@
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
 import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 
+import axios from "axios";
+
 const SignUp = ({ setVisible, setLoginVisible }) => {
-  const navigate = useNavigate();
+  // Create the useStates
   const [username, setUsername] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
@@ -13,6 +13,7 @@ const SignUp = ({ setVisible, setLoginVisible }) => {
   const [preview, setPreview] = useState(null);
   const [avatar, setAvatar] = useState({});
 
+  // Create the dropzone for the avatar
   function MyDropzone() {
     const onDrop = useCallback((acceptedFiles) => {
       if (acceptedFiles.length > 1) {
@@ -34,7 +35,7 @@ const SignUp = ({ setVisible, setLoginVisible }) => {
       </div>
     );
   }
-
+  // When we change an input, it sets the useState...
   const onChange = (event, target) => {
     if (target === "username") {
       setUsername(event.target.value);
@@ -47,6 +48,7 @@ const SignUp = ({ setVisible, setLoginVisible }) => {
     }
   };
 
+  // Let's post the datas
   const postData = async (username, email, password, newsletter, avatar) => {
     try {
       const { data } = await axios.post(
@@ -62,11 +64,13 @@ const SignUp = ({ setVisible, setLoginVisible }) => {
       alert("Votre compte a bien été créé.");
       console.log(data);
       setVisible(false);
+      // well I don't send the cookie now because I want the user to use my fancy login modal to login...
     } catch (error) {
       console.log(error.message);
     }
   };
 
+  // Display the form to signup in a modal
   return (
     <div
       className="modal-root"

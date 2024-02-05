@@ -1,5 +1,7 @@
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+
+// components
 import CheckoutForm from "../components/CheckoutForm";
 
 export default function PaymentPage(props) {

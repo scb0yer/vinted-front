@@ -1,10 +1,12 @@
 import axios from "axios";
+
 import { useState } from "react";
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
 
 export default function Publish(props) {
+  // create the useStates
   const navigate = useNavigate();
   const [title, setTitle] = useState(null);
   const [description, setDescription] = useState(null);
@@ -17,6 +19,7 @@ export default function Publish(props) {
   const [pictures, setPictures] = useState(null);
   const [preview, setPreview] = useState(null);
 
+  // create the dropzone
   function MyDropzone() {
     const onDrop = useCallback((acceptedFiles) => {
       if (acceptedFiles.length > 4) {
@@ -34,7 +37,6 @@ export default function Publish(props) {
       }
     }, []);
     const { getRootProps, getInputProps } = useDropzone({ onDrop });
-
     return (
       <div {...getRootProps()} className="dropzone">
         <input {...getInputProps()} />
@@ -55,7 +57,7 @@ export default function Publish(props) {
       </div>
     );
   }
-
+  // When we change an input, it sets the useState...
   const onChange = (event, target) => {
     if (target === "title") {
       setTitle(event.target.value);
@@ -74,6 +76,7 @@ export default function Publish(props) {
     } else if (target === "color") {
       setColor(event.target.value);
     }
+    // ...that was before i use dropzone...
     // else if (target === "pictures") {
     //   const newPictures = [...pictures];
     //   for (let i = 0; i < event.target.files.length; i++) {
@@ -82,6 +85,8 @@ export default function Publish(props) {
     //   setPictures(newPictures);
     // }
   };
+
+  // to post the data
   const postData = async (
     title,
     description,
@@ -123,12 +128,15 @@ export default function Publish(props) {
       console.log(error.message);
     }
   };
+
+  // only if the user is logged, the publish page is displayed
   return props.token ? (
     <section className="publish">
       <h2>Vends ton article</h2>
       <form>
         <div className="add-a-picture">
           <MyDropzone />
+          {/* ...that was before i use dropzone */}
           {/* <button>
             <input
               type="file"

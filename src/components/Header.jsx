@@ -1,14 +1,18 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import Vinted_Logo from "../assets/Vinted_Logo.png";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { translate } from "react-range/lib/utils";
+
+import Vinted_Logo from "../assets/Vinted_Logo.png";
 
 const Header = (props) => {
   const newQuery = [...props.query];
+  // Create the useStates for the filters
   const [priceMin, setPriceMin] = useState(0);
   const [priceMax, setPriceMax] = useState(500);
+
   const navigate = useNavigate();
+
+  // When we change an input, it sets the useState...
   const onChange = (event, target) => {
     if (target === "search") {
       newQuery[0] = `title=${event.target.value}`;
@@ -24,14 +28,19 @@ const Header = (props) => {
       props.setQuery(newQuery);
     }
   };
+
+  // Display a fixed Header
   return (
     <header>
+      {/* Lock the scroll when modals are activated */}
       {props.loginVisible
         ? document.body.classList.add("scroll-lock")
         : props.signUpVisible
         ? document.body.classList.add("scroll-lock")
         : document.body.classList.remove("scroll-lock")}
+
       <div className="col1">
+        {/* when you click on the logo, queries are reset and you go back to the HomePage*/}
         <img
           onClick={(event) => {
             props.setCount(1);
@@ -54,6 +63,7 @@ const Header = (props) => {
           />
         </div>
         <div>
+          {/* Well well... I really tried to use the react range... Anyway, that way works too... */}
           <div>Trier par prix :</div>
           <div>
             <div>
@@ -82,6 +92,7 @@ const Header = (props) => {
           </div>
         </div>
       </div>
+      {/* on a small screen, it displays only the profile picto */}
       <div className="invisible-large">
         <Link to="/profil">
           <FontAwesomeIcon
@@ -91,6 +102,7 @@ const Header = (props) => {
           />
         </Link>
       </div>
+      {/* on a large screen, it displays the profile picto when user is logged, otherwise buttons to login, signup and post */}
       <div className="col3">
         <div>
           {!props.token ? (

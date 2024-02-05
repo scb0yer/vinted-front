@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import Image from "../assets/vignette-focus.jpg";
 
 export default function HomePage(props) {
@@ -6,6 +7,7 @@ export default function HomePage(props) {
     <div>
       <img className="banner" src={Image} alt="photo" />
       <br />
+      {/* Show all the announces in a container */}
       <div className="container">
         {props.data.map((offer, index) => {
           return (
@@ -50,6 +52,7 @@ export default function HomePage(props) {
           );
         })}
       </div>
+      {/* servor sends back only 15 announces, unless the limit is increased in the query ==> let's increase it ! */}
       <div className="loadMore">
         {props.dataNb > 15 * props.count && (
           <button

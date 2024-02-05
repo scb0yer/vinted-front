@@ -1,21 +1,31 @@
 import "./App.css";
+
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+// Node modules
+import axios from "axios";
+import Cookies from "js-cookie";
+
+// Components
 import Header from "./components/Header";
+import SignUp from "./components/SignUp";
+import Login from "./components/Login";
+
+// Pages
 import HomePage from "./pages/HomePage";
 import OfferPage from "./pages/OfferPage";
 import PaymentPage from "./pages/PaymentPage";
 import Publish from "./pages/Publish";
-import SignUp from "./components/SignUp";
-import Login from "./components/Login";
-import Cookies from "js-cookie";
 import ProfilPage from "./pages/ProfilPage";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import NotFoundPage from "./pages/NotFoundPage";
+
 library.add(faUser);
 
 function App() {
+  // Create the useStates
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
   const [productToBuy, setProductToBuy] = useState([]);
@@ -32,15 +42,19 @@ function App() {
     "count=1",
   ]);
   const queries = query.join("&");
+
+  // Define the Costs
   const buyerCosts = 0.4;
   const shippingCosts = 0.8;
 
+  // Add the number of times we click on "load more" to the queries so more announces appear (limit depends on it)
   useEffect(() => {
     const newQuery = [...query];
     newQuery[3] = `count=${count}`;
     setQuery(newQuery);
   }, [count]);
 
+  // Collect the datas everytime a query is changed and return the routes
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -139,6 +153,7 @@ function App() {
             />
           }
         />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       {signUpVisible && (
         <SignUp

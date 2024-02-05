@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+
 import axios from "axios";
 
 const CheckoutForm = (props) => {
+  // Create the useStates
   const stripe = useStripe();
   const elements = useElements();
   const [completed, setCompleted] = useState(false);
 
+  // Post the datas to pay
   const handleSubmit = async (event) => {
     event.preventDefault();
     const cardElement = elements.getElement(CardElement);
@@ -30,6 +33,7 @@ const CheckoutForm = (props) => {
     }
   };
 
+  // Displays the payment informations and stripe only if the user is logged
   return (
     <>
       {props.token ? (

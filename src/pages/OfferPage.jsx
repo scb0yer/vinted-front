@@ -6,6 +6,7 @@ export default function OfferPage(props) {
   const navigate = useNavigate();
   const { id } = useParams();
 
+  // Calculate the total amount with shipping costs and buyer costs when a product is added to the card
   useEffect(() => {
     const amount =
       Number(props.productToBuy[1]) +
@@ -15,12 +16,14 @@ export default function OfferPage(props) {
     props.setAmount(amount);
   }, [props.productToBuy]);
 
+  // Look for all the offer that matchs with the id (normally there is only one)
   return (
     <section>
       {props.data.map((offer, index) => {
         return (
           offer._id === id && (
             <div className="offerPage" key={index}>
+              {/* well, that mess doesn't look fancy but at the end it makes a (lovely) mosaic depending on how many pictures there are */}
               <div className="picturesContainer">
                 <div
                   className={
@@ -111,6 +114,7 @@ export default function OfferPage(props) {
                   <div className="font-m">{offer.product_description}</div>
                   <br />
                   <div>
+                    {/* to show the owner avatar if there is one */}
                     {offer.owner.account.avatar && (
                       <img
                         className="avatar"
@@ -122,6 +126,7 @@ export default function OfferPage(props) {
                   </div>
                 </div>
                 <div>
+                  {/* add the product in the card, so amount is calculated and navigate to the payment page */}
                   <button
                     onClick={(event) => {
                       const productToBuy = [];
